@@ -1,0 +1,118 @@
+.avaliacao-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-image: url('/fundo1.jpg');
+  background-size: cover; 
+  background-position: center; 
+}
+
+.avaliacao-form {
+  background-color: rgba(0, 0, 0, 0.5); 
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  width: 80%;
+  margin: 50px auto;
+  font-size: 20px; 
+  color: #fff; 
+}
+.avaliacao-title {
+  font-size: 40px; 
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 10px; 
+  color: #ffffff; 
+  text-shadow: 2px 2px 10px rgba(15, 49, 141, 0.7); 
+}
+
+
+.avaliacao-rating {
+  margin-bottom: 20px;
+}
+
+.avaliacao-rating label {
+  margin-right: 10px;
+}
+
+.avaliacao-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  
+}
+.avaliacao-result {
+  margin-top: 20px;
+}
+.avaliacao-button:hover {
+  background-color: #5285d1;
+  
+}
+
+.feedback-form {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  width: 80%;
+  margin: 20px auto;
+  font-size: 16px;
+}
+.feedback-result {
+  margin-top: 20px;
+  padding: 20px; 
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  min-height: 100px;
+  display: flex;
+  flex-direction: column; 
+  justify-content: center; 
+}
+
+.feedback-input {
+  margin-bottom: 20px;
+}
+
+.feedback-input label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.feedback-input textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.feedback-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #042b64;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.feedback-button:hover {
+  background-color: #031d45;
+}
+
+.feedback-result {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+}
