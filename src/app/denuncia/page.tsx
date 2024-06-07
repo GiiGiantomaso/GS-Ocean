@@ -6,7 +6,7 @@ import "./denuncia.css";
 const DenunciaPage = () => {
   const [denuncia, setDenuncia] = useState("");
 
-  const handleDenunciaChange = (event) => {
+  const handleDenunciaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDenuncia(event.target.value);
   };
 
@@ -20,7 +20,7 @@ const DenunciaPage = () => {
         },
         body: JSON.stringify({ DENUNCIA: denuncia.toLowerCase() }),
       });
-      
+
       if (response.ok) {
         console.log("Denúncia enviada com sucesso!");
         setDenuncia("");
@@ -28,7 +28,11 @@ const DenunciaPage = () => {
         console.error("Erro ao enviar denúncia:", response.statusText);
       }
     } catch (error) {
-      console.error("Erro ao enviar denúncia:", error.message);
+      if (error instanceof Error) {
+        console.error("Erro ao enviar denúncia:", error.message);
+      } else {
+        console.error("Erro desconhecido ao enviar denúncia");
+      }
     }
   };
 
