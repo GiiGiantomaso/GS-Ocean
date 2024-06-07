@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import React from "react";
 import "./avaliacao.css"; 
 
@@ -17,7 +17,7 @@ const Avaliacao = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ nota, texto }),
+          body: JSON.stringify({ AVALIACAO: nota, TEXTO: texto }), 
         });
         
         if (response.ok) {
@@ -28,7 +28,7 @@ const Avaliacao = () => {
           // Tratar caso o servidor retorne um erro
           console.error("Erro ao enviar dados para o servidor:", response.statusText);
         }
-      } catch (error: any) { // Alteração aqui
+      } catch (error: any) {
         // Tratar erros de rede ou outras exceções
         console.error("Erro ao enviar requisição:", error.message);
       }
