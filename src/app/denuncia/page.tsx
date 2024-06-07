@@ -21,7 +21,8 @@ export default function DenunciaPage() {
     <div className="denuncia-page">
       <div className="denuncia-container">
         <div className="denuncia-form-wrapper">
-          <h2>Denuncie</h2>
+          <h2>Caso veja uma prática ilegal</h2>
+          <h2>DENUNCIE</h2>
           <form onSubmit={handleSubmit}>
             <textarea
               value={denuncia}

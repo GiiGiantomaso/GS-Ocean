@@ -1,6 +1,5 @@
 "use client"
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 
 const Cadastro = () => {
   const [mostrarAviso, setMostrarAviso] = useState(false);
@@ -10,39 +9,45 @@ const Cadastro = () => {
   const [telefone, setTelefone] = useState("");
   const [email, setEmail] = useState("");
 
-
-  const changeNome = (event: any) => {
+  const changeNome = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNome(event.target.value);
   };
-  const changeUser = (event: any) => {
+  const changeTelefone = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTelefone(event.target.value);
   };
-  const changeEmail = (event: any) => {
+  const changeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  var myHeaders = new Headers();
+  const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
-  const enviarDados = async (event: any) => {
+  const enviarDados = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     const dados = {
-      nome,
-      telefone,
-      email,
+      NOME_USUARIO: nome,
+      EMAIL_USUARIO: email,
+      TELEFONE: telefone,
     };
-    console.log(JSON.stringify(dados))
+
+    console.log(JSON.stringify(dados));
 
     try {
-      const response = await fetch("http://localhost:8080/cliente", {
+      const response = await fetch("http://localhost:8080/usuario", {
         method: "POST",
         headers: myHeaders,
         body: JSON.stringify(dados),
       });
 
-      if (response.statusText === "Created") {
+      if (response.status === 201) {
         setMostrarAviso(true);
         setMensagem("Usuário cadastrado");
+
+        // Limpar os campos do formulário
+        setNome("");
+        setTelefone("");
+        setEmail("");
       } else {
         setMostrarAviso(true);
         setMensagem("Ocorreu um erro");
@@ -70,15 +75,33 @@ const Cadastro = () => {
           </div>
         </div>
       )}
-      <form className="form">
+      <form className="form" onSubmit={enviarDados}>
         <h4>Seja um apoiador da causa!</h4>
         <h2>Se cadastre</h2>
 
-        <input value={nome} onChange={changeNome} type="text" placeholder="Nome completo" required />
-        <input value={telefone} onChange={changeUser} type="text" placeholder="Telefone" required />
-        <input value={email} onChange={changeEmail} type="email" placeholder="E-mail" required />
-        
-        <button type="submit" onClick={enviarDados}>Cadastrar</button>
+        <input
+          value={nome}
+          onChange={changeNome}
+          type="text"
+          placeholder="Nome completo"
+          required
+        />
+        <input
+          value={telefone}
+          onChange={changeTelefone}
+          type="text"
+          placeholder="Telefone"
+          required
+        />
+        <input
+          value={email}
+          onChange={changeEmail}
+          type="email"
+          placeholder="E-mail"
+          required
+        />
+
+        <button type="submit">Cadastrar</button>
       </form>
     </section>
   );

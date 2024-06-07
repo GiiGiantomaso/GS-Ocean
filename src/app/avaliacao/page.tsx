@@ -4,27 +4,37 @@ import "./avaliacao.css";
 
 const Avaliacao = () => {
   const [nota, setNota] = React.useState<number | null>(null);
-  const [feedback, setFeedback] = React.useState<string>("");
+  const [texto, setTexto] = React.useState<string>("");
   const initialNota = null;
-  const initialFeedback = "";
+  const initialTexto = "";
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (nota !== null && feedback.trim() !== "") {
-      const response = await fetch("/api/avaliacao", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ nota, feedback }),
-      });
-      if (response.ok) {
-        // Limpa o formulário depois do envio
-        setNota(initialNota);
-        setFeedback(initialFeedback);
+    if (nota !== null && texto.trim() !== "") {
+      try {
+        const response = await fetch("http://localhost:8080/avaliacao", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ nota, texto }),
+        });
+        
+        if (response.ok) {
+          // Limpa o formulário depois do envio
+          setNota(initialNota);
+          setTexto(initialTexto);
+        } else {
+          // Tratar caso o servidor retorne um erro
+          console.error("Erro ao enviar dados para o servidor:", response.statusText);
+        }
+      } catch (error: any) { // Alteração aqui
+        // Tratar erros de rede ou outras exceções
+        console.error("Erro ao enviar requisição:", error.message);
       }
     }
   };
+  
 
   return (
     <div className="avaliacao-container">
@@ -47,11 +57,11 @@ const Avaliacao = () => {
         </div>
 
         <div className="feedback-input">
-          <label>Feedback:</label>
+          <label>Texto:</label>
           <textarea
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
-            placeholder="Deixe seu feedback aqui..."
+            value={texto}
+            onChange={(e) => setTexto(e.target.value)}
+            placeholder="Deixe seu texto aqui..."
             required
           />
         </div>
