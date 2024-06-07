@@ -26,6 +26,7 @@ const Header = () => {
                 <a className="page-link" href="./avaliacao">Avaliação</a>
               </li>
               
+              
             </ul>
             <a href="./cadastro">
                 <Image src="/user.svg" alt="cadastro" width={45} height={50}></Image>
