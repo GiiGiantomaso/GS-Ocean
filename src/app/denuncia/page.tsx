@@ -1,20 +1,35 @@
-'use client';
-
+"use client";
 import React, { useState } from "react";
 import Image from "next/image";
 import "./denuncia.css";
 
-export default function DenunciaPage() {
+const DenunciaPage = () => {
   const [denuncia, setDenuncia] = useState("");
 
-  const handleDenunciaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleDenunciaChange = (event) => {
     setDenuncia(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log("Denúncia enviada:", denuncia);
-    setDenuncia("");
+    try {
+      const response = await fetch("http://localhost:8080/denuncia", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ DENUNCIA: denuncia.toLowerCase() }),
+      });
+      
+      if (response.ok) {
+        console.log("Denúncia enviada com sucesso!");
+        setDenuncia("");
+      } else {
+        console.error("Erro ao enviar denúncia:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Erro ao enviar denúncia:", error.message);
+    }
   };
 
   return (
@@ -45,4 +60,6 @@ export default function DenunciaPage() {
       </div>
     </div>
   );
-}
+};
+
+export default DenunciaPage;
