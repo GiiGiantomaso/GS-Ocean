@@ -5,6 +5,7 @@ import "./avaliacao.css";
 const Avaliacao = () => {
   const [nota, setNota] = React.useState<number | null>(null);
   const [texto, setTexto] = React.useState<string>("");
+  const [envioSucesso, setEnvioSucesso] = React.useState<boolean>(false);
   const initialNota = null;
   const initialTexto = "";
 
@@ -21,20 +22,17 @@ const Avaliacao = () => {
         });
         
         if (response.ok) {
-          // Limpa o formulário depois do envio
           setNota(initialNota);
           setTexto(initialTexto);
+          setEnvioSucesso(true); 
         } else {
-          // Tratar caso o servidor retorne um erro
           console.error("Erro ao enviar dados para o servidor:", response.statusText);
         }
       } catch (error: any) {
-        // Tratar erros de rede ou outras exceções
         console.error("Erro ao enviar requisição:", error.message);
       }
     }
   };
-  
 
   return (
     <div className="avaliacao-container">
@@ -70,6 +68,8 @@ const Avaliacao = () => {
           Enviar
         </button>
       </form>
+
+      {envioSucesso && <p className="success-message">Avaliação enviada com sucesso!</p>}
     </div>
   );
 };

@@ -25,7 +25,12 @@ const Header = () => {
               <li>
                 <a className="page-link" href="./avaliacao">Avaliação</a>
               </li>
-              
+              <li>
+                <a className="page-link" href="./registroAvaliacao">Registro Avaliações</a>
+              </li>
+              <li>
+                <a className="page-link" href="./registroDenuncia">Registro Denuncias</a>
+              </li>
               
             </ul>
             <a href="./cadastro">

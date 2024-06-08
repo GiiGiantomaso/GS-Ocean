@@ -5,6 +5,7 @@ import "./denuncia.css";
 
 const DenunciaPage = () => {
   const [denuncia, setDenuncia] = useState("");
+  const [envioSucesso, setEnvioSucesso] = useState(false);
 
   const handleDenunciaChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setDenuncia(event.target.value);
@@ -23,6 +24,7 @@ const DenunciaPage = () => {
 
       if (response.ok) {
         console.log("Denúncia enviada com sucesso!");
+        setEnvioSucesso(true);
         setDenuncia("");
       } else {
         console.error("Erro ao enviar denúncia:", response.statusText);
@@ -41,7 +43,7 @@ const DenunciaPage = () => {
       <div className="denuncia-container">
         <div className="denuncia-form-wrapper">
           <h2>Caso veja uma prática ilegal</h2>
-          <h2>DENUNCIE</h2>
+          <h2>DENUNCIE:</h2>
           <form onSubmit={handleSubmit}>
             <textarea
               value={denuncia}
@@ -51,6 +53,7 @@ const DenunciaPage = () => {
             />
             <button type="submit" className="denuncia-button">Enviar</button>
           </form>
+          {envioSucesso && <p className="success-message">Denúncia enviada com sucesso!</p>}
         </div>
         <div className="denuncia-image-wrapper">
           <Image

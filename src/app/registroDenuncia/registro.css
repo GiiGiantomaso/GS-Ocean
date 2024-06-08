@@ -1,0 +1,64 @@
+.denuncia-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  background-color: #3498db;
+  color: #fff;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.denuncia-container {
+  text-align: center;
+  width: 80%;
+  margin-top: 50px;
+}
+
+.denuncia-button {
+  margin-top: 20px;
+  padding: 15px 30px;
+  background-color: #fff;
+  color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.denuncia-title {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.denuncia-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.denuncia-item {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  color: #000;
+}
+
+.denuncia-item p {
+  margin: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .denuncia-item {
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .denuncia-item p {
+    margin-right: 10px;
+    flex-basis: calc(50% - 10px);
+  }
+}
